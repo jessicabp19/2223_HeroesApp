@@ -1,6 +1,15 @@
+import { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/context';
 
 export const Navbar = () => {
+
+    
+    const { user } = useContext( AuthContext );
+    // user?.name -> To check if user exists before trying to get the name
+    
+    //Usualmente almacenamos tokens de acceso el cual verificamos cuando se ingresa por primera vez
+    //Podemos enviarlo por cookies o almacenarlo en el storage y hacer una peticion, etc.
 
     const navigate = useNavigate(); //Custom hook
 
@@ -49,7 +58,7 @@ export const Navbar = () => {
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
                     <span className='nav-item nav-link text-primary'>
-                        Jessica
+                        { user?.name }
                     </span>
 
                     <button 
