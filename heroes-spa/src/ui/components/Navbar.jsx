@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useReducer } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../auth/context';
+import { AuthContext, authReducer } from '../../auth/context';
 
 export const Navbar = () => {
 
     
-    const { user } = useContext( AuthContext );
+    const { user, logout } = useContext( AuthContext );
     // user?.name -> To check if user exists before trying to get the name
     
     //Usualmente almacenamos tokens de acceso el cual verificamos cuando se ingresa por primera vez
@@ -14,6 +14,9 @@ export const Navbar = () => {
     const navigate = useNavigate(); //Custom hook
 
     const onLogout = () => {
+
+        logout();
+
         navigate('/login', {
             replace: true
         });
